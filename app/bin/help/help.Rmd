@@ -1,0 +1,211 @@
+---
+title: "Help"
+author: "Micha Birklbauer"
+date: "26 Juni 2018"
+output:
+  html_document:
+    toc: yes
+---
+
+# What is InstaPython-App?
+
+[InstaPython](https://github.com/t0xic-m/instapython) is set of tools to access and deal with Instagram data.
+
+InstaPython-App is a graphical interface wrapped around the python package!
+
+InstaPython-App was written using [Electron](https://electronjs.org/) and [Bootstrap](https://getbootstrap.com/)!
+
+# Features
+
+These features are available within the app:
+
+## Instagram Core Functions
+
+### Get User ID! - Extract User ID
+
+Enter a valid and existing username (without the "@" sign) in the field above!
+
+The extraced user ID will be printed to the "Status & Result:" bar at the bottom of the window. Also all fields that use the user ID will be populated!
+
+### Get Username! - Extract Username
+
+Enter a valid and existing user ID to retrieve the corresponding username.
+
+The result will be available at the bottom of the window!
+Also all fields that use that username will be populated!
+
+### Get #Media! - Extract Media Count
+
+Enter a valid and existing user ID to retrieve the corresponding media count of that user.
+
+Result will visible at the bottom of the window!
+
+### Get Profile Picture! - Extract Profile Picture
+
+Enter a valid and existing user ID to extract the link to the user's profile picture.
+
+Result will be available at the bottom of the window and on the "Results" page!
+
+### Get New Post! - Extract Newest Post
+
+Enter a valid and existing user ID to extract the link to the user's newest post.
+
+Result will be available at the bottom of the window and in more detail on the "Results" page!
+
+### Get Story! - Extract Stories
+
+Enter a valid and existing user ID to extract links to the user's stories.
+
+Result will be available on the "Results" page!
+
+### P? - Extract Private Status
+
+Enter a valid and existing user ID to check if that his/her profile is private!
+
+Result will be available at the bottom of the window!
+
+### Download Profile Picture!
+
+Enter a valid and existing user ID to download the user's profile picture.
+
+A notification will be printed to the "Status & Result:" bar at the bottom of the window when the download has finished!
+
+### Download New Post!
+
+Enter a valid and existing user ID to download the user's newest post.
+
+A notification will be printed to the "Status & Result:" bar at the bottom of the window when the download has finished!
+
+NOTE: This may take some time if the post consists of several pictures and videos!
+
+### Download Story!
+
+Enter a valid and existing user ID to download the user's stories.
+
+A notification will be printed to the "Status & Result:" bar at the bottom of the window when the download has finished!
+
+NOTE: This may take some time if the user has a lot of stories!
+
+### Download Post Media
+
+Enter a valid and existing URL to an Instagram post. 
+
+E.g.: https://www.instagram.com/p/BQGIwFYFDSB/
+
+A notification will be printed to the "Status & Result:" bar at the bottom of the window when the download has finished!
+
+NOTE: This may take some time if the post consists of several pictures and videos!
+
+### Open in Browser!
+
+Opens links that are printed to the "Status & Result:" bar in a new browser window!
+
+## InstaBot
+
+InstaBot is a python script that can watch public instagram profiles for new posts and sends notifications to a telegram channel. Uses the official Bot API by Telegram and the official API by Instagram!
+
+### Channel
+
+Enter a channel that you (and your bot) have access to in the form of "channel_id" or "\@channelname".
+
+### API Token
+
+Enter the API Token for your Telegram bot.
+
+### Runtime
+
+Enter the time in seconds how long the bot should run. Has to be an integer number. If set 0 the bot will run until exiting the application!
+
+### Story Notification Time
+
+Enter the time when the bot should send story notifications. Has to be an integer in the range of 0 <= time < 24.
+
+### User IDs
+
+Enter the user IDs of the instagram accounts your bot should watch. You can enter multiple user IDs by seperating them with a semicolon (";").
+
+### Debugging Mode
+
+If checked it will send more notifications to your channel to observe the state of the bot.
+
+### Start InstaBot!
+
+Starts the bot. All parameters have to be set beforehand!
+
+### Status Bar
+
+The following states are possible:
+
+- Waiting...: Waiting for inputs!
+- Running...: The bot is running!
+- Finished!: The bot is finished!
+
+## InstaView
+
+Transforms Instagram's data - that you get via the [Data Download Tool](https://www.cnet.com/how-to/how-to-download-all-your-instagram-data/) - to a readable format!
+
+### Absolute Path
+
+Enter the absolute path to your data directory!
+
+This directory should roughly have this structure:
+
+- direct [folder]
+- photos [folder]
+- profile [folder]
+- stories [folder]
+- videos [folder]
+- comments.json
+- connections.json
+- contacts.json
+- likes.json
+- media.json
+- messages.json
+- profile.json
+- searches.json
+- settings.json
+
+
+### Knit PDF!
+
+Creates the RMD in the specified directory with name "instaview.Rmd" and tries to knit it to a PDF file. This action is only successful if "R", "knitr" and all dependencies are correctly installed.
+
+You can still manually knit the RMD file if knitting was unsuccesful. For that go to your data directory and run the following in "R":
+
+```{r eval=FALSE}
+library(rmarkdown)
+render("instaview.Rmd")
+```
+
+It is highly recommended to use [RStudio](https://www.rstudio.com/) for that!
+
+### Status Bar
+
+The status bar will display when the process is finished!
+
+## Results
+
+This page displays results that are multiline!
+
+### Load Results!
+
+Load results from the most recent query!
+
+# Credits
+
+InstaPython Image is the work of talented [Hannelore Bodocian](https://www.instagram.com/hannibodo/)!
+
+This programm was built with the help of [Electron](https://electronjs.org/) and [Bootstrap](https://getbootstrap.com/)!
+
+# License
+
+[MIT License](https://github.com/t0xic-m/instapython-app/blob/master/LICENSE.md)
+
+# Contact
+
+Micha Birklbauer
+
+- [Website](https://sites.google.com/site/michabirklbauer)
+- [GitHub](https://github.com/t0xic-m)
+- [Mail](micha.birklbauer@gmail.com)
+- [Telegram](https://telegram.me/micha_birklbauer)

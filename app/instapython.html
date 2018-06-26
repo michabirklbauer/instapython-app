@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Mainpage of InstaPython-App">
+    <meta name="author" content="Micha Birklbauer">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    <title>InstaPython App</title>
+
+    <style type="text/css">
+
+      .jumbotron{
+        margin-top: 10px;
+        background-image: url("bin/img/main.jpg");
+        background-size: cover;
+        color: white;
+      }
+
+    </style>
+
+    <script src="requests.js"></script>
+    <script>
+    function open_status(){
+      url = String(document.getElementById("status").value)
+      shell.openExternal(url)
+    }
+    </script>
+
+  </head>
+  <body>
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About InstaPython</h4>
+              <p class="text-muted">InstaPython is set of tools to access and deal with Instagram data. InstaPython-App is a graphical interface wrapped around the python package! InstaPython-App was written using Electron and Bootstrap!</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="javascript:shell.openExternal('https://sites.google.com/site/michabirklbauer')" class="text-white">Website</a></li>
+                <li><a href="javascript:shell.openExternal('https://github.com/t0xic-m')" class="text-white">GitHub</a></li>
+                <li><a href="javascript:shell.openExternal('https://telegram.me/micha_birklbauer')" class="text-white">Telegram</a></li>
+                <li><a href="javascript:shell.openExternal('https://instagram.com/hannibodo')" class="text-white">Picture by Hanni</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <strong>InstaPython App</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="display-4">InstaPython</h1>
+        <p class="lead">You are here: Instagram Core Functions.</p>
+        <hr class="my-4" color="white">
+        <p>Use username and user ID to access and download pictures and videos!</p>
+      </div>
+      <form>
+        <div class="form-row align-items-center">
+          <label for="useridlabel">Enter a Username:</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">@</div>
+            </div>
+            <input type="text" class="form-control" id="username" placeholder="Username">
+          </div>
+          <div class="button-toolbar">
+            <button type="button" class="btn btn-dark" onclick="get_userid()">Get User ID!</button>
+          </div>
+        </div>
+        <div class="form-row align-items-center"
+          <label for="usernamelabel">Enter a User ID:</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">#</div>
+            </div>
+            <input type="text" class="form-control" id="userid" placeholder="User ID">
+          </div>
+          <div class="button-toolbar">
+            <button type="button" class="btn btn-dark" onclick="get_username()">Get Username!</button>
+            <button type="button" class="btn btn-secondary" onclick="get_mediacount()">Get #Media!</button>
+            <button type="button" class="btn btn-dark" onclick="get_profilepic()">Get Profile Picture!</button>
+            <button type="button" class="btn btn-secondary" onclick="get_newpost()">Get New Post!</button>
+            <button type="button" class="btn btn-dark" onclick="get_stories()">Get Story!</button>
+            <button type="button" class="btn btn-danger" onclick="get_pstatus()">P?</button>
+          </div>
+        </div>
+        <div class="form-row align-items-center"
+          <label for="usernamelabel">Downloads:</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">#</div>
+            </div>
+            <input type="text" class="form-control" id="userid2" placeholder="User ID">
+          </div>
+          <div class="button-toolbar">
+            <button type="button" class="btn btn-dark" onclick="dl_profilepicture()">Download Profile Picture!</button>
+            <button type="button" class="btn btn-secondary" onclick="dl_newpost()">Download New Post!</button>
+            <button type="button" class="btn btn-dark" onclick="dl_stories()">Download Story!</button>
+          </div>
+        </div>
+        <div class="form-row align-items-center"
+          <label for="usernamelabel">Download Post Media:</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">https://</div>
+            </div>
+            <input type="text" class="form-control" id="postid" placeholder="URL">
+          </div>
+          <div class="button-toolbar">
+            <button type="button" class="btn btn-dark" onclick="dl_media()">Download!</button>
+          </div>
+        </div>
+        <div class="form-row align-items-center"
+          <label for="statuslabel">Status & Result:</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">></div>
+            </div>
+            <input type="text" class="form-control" id="status" placeholder="OK!">
+            <button type="button" class="btn btn-dark" onclick="open_status()">Open in Browser!</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Other Utilities</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="instapython.html">Instagram<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="instabot.html">InstaBot<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="instaview.html">InstaView<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="results.html">Results<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="javascript:shell.openExternal('help.html')">Help<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <!-- We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>. -->
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+      const {shell} = require('electron')
+      const {dialog} = require('electron')
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
+  </body>
+</html>
