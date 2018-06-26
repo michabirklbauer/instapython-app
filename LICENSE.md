@@ -1,13 +1,9 @@
 MIT License
 
-Copyright (c) 2018 Micha Birklbauer
-
-Copyright (c) 2018 Hannelore Bodocian
-
-Copyright (c) 2013-2018 GitHub Inc.
-
-Copyright (c) 2011-2018 Twitter, Inc.
-
+Copyright (c) 2018 Micha Birklbauer  
+Copyright (c) 2018 Hannelore Bodocian  
+Copyright (c) 2013-2018 GitHub Inc.  
+Copyright (c) 2011-2018 Twitter, Inc.  
 Copyright (c) 2011-2018 The Bootstrap Authors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
