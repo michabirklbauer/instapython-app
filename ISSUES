@@ -1,1 +1,4 @@
+[28.06.2018]
 PACKAGING: Python script gets delinked when packaged and app loses functionality!
+CROSSPLATFORM: Only tested on Windows thoroughly, issues with shell.openExternal() on other platforms (confirmed on elementary OS loki)!
+PYTHON: Make sure "python" calls python 3.x and not python 2.7, otherwise it won't work!
