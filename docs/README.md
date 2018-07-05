@@ -2,6 +2,8 @@
 
 InstaPython App is a graphical interface wrapped around my python package [InstaPython](https://github.com/t0xic-m/instapython). It provides basic functions to access and deal with Instagram data and two of my other Projects: [InstaBot](https://github.com/t0xic-m/instagram_watchdog) and [InstaView](https://github.com/t0xic-m/instagram_data_download_viewer). InstaPython App was built with [Electron](https://electronjs.org/) and [Bootstrap](https://getbootstrap.com/).
 
+Alternatively there is also a version that runs natively in Python 3.6 and uses Tkinter for the interface!
+
 ## Interface
 
 ![InstaPython-App-Screenshot](https://raw.githubusercontent.com/t0xic-m/instapython-app/master/docs/ipa-screenshot.jpg)
@@ -25,6 +27,8 @@ InstaPython App is a graphical interface wrapped around my python package [Insta
 - InstaView: A script to create nicely structured R Markdown/PDF files from Instagram data.  [see here!](https://github.com/t0xic-m/instagram_data_download_viewer)
 
 ## Requirements
+
+**Platform: Windows**
 
 [Python](https://www.python.org/) and [Node.js](https://nodejs.org) (with [npm](https://www.npmjs.com/)) are prerequesits!
 
@@ -52,6 +56,45 @@ cd instapython-app/app
 npm install
 # Run the app
 npm start
+```
+
+## Native Python GUI with Tkinter
+
+**Platform: All Platforms**
+
+Requires Python 3.6 and the following packages:
+
+```python
+import urllib.request as ur
+import urllib.parse as up
+from lxml import html
+import tkinter as tk
+from tkinter import scrolledtext as st
+import platform
+import webbrowser
+import datetime
+import requests
+import json
+import time
+import sys
+import os
+```
+
+Getting started:
+
+```bash
+# Clone this repository with git (or download it manually via this link: https://github.com/t0xic-m/instapython-app/archive/master.zip)
+git clone https://github.com/t0xic-m/instapython-app.git
+# Go into the repository
+cd instapython-app/app-tkinter
+# Install dependencies
+pip install lxml
+pip install requests
+...
+# Run the app on Windows
+python instapython-app.py
+# Run the app on any other platform
+python3 instapython-app.py
 ```
 
 ## Downloads
