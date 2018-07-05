@@ -20,6 +20,8 @@ InstaPython App is a graphical interface wrapped around my python package [Insta
 
 ## Requirements
 
+**Platform: Windows
+
 [Python](https://www.python.org/) and [Node.js](https://nodejs.org) (with [npm](https://www.npmjs.com/)) are prerequesits!
 
 To be more specific:
@@ -46,6 +48,44 @@ cd instapython-app/app
 npm install
 # Run the app
 npm start
+```
+## Native Python GUI with Tkinter
+
+**Platform: All Platforms
+
+Requires Python 3.6 and the following packages:
+
+```python
+import urllib.request as ur
+import urllib.parse as up
+from lxml import html
+import tkinter as tk
+from tkinter import scrolledtext as st
+import platform
+import webbrowser
+import datetime
+import requests
+import json
+import time
+import sys
+import os
+```
+
+Getting started:
+
+```bash
+# Clone this repository with git (or download it manually via this link: https://github.com/t0xic-m/instapython-app/archive/master.zip)
+git clone https://github.com/t0xic-m/instapython-app.git
+# Go into the repository
+cd instapython-app/app-tkinter
+# Install dependencies
+pip install lxml
+pip install requests
+...
+# Run the app on Windows
+python instapython-app.py
+# Run the app on any other platform
+python3 instapython-app.py
 ```
 
 ## Credits
