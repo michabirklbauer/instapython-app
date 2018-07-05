@@ -3,6 +3,10 @@
 import urllib.request as ur
 import urllib.parse as up
 from lxml import html
+import tkinter as tk
+from tkinter import scrolledtext as st
+import platform
+import webbrowser
 import datetime
 import requests
 import json
@@ -546,82 +550,391 @@ class InstaView:
 		# try knitting to pdf
 		self.RMDtoPDF()
 
-if __name__ == '__main__':
-
-	action = sys.argv[1]
-	args = sys.argv[2:]
+class InstaPythonApp:
 
 	instagram = Instagram()
+	result = []
 
-	#usage: instabot channel api_token rtime stime debugging_mode user_id*
-	if action == "instabot":
-		i = InstaBot("instabot.cfg", str(args[0]), str(args[1]))
-		user_ids_cc = args[5]
-		user_ids = user_ids_cc.split(";")
-		if args[4] == "true":
-			i.instaBot(user_ids, int(args[2]), int(args[3]), True)
+	def __init__(self, master):
+		self.master = master
+		master.title("InstaPython App by Micha Birklbauer")
+
+		# header
+		mainImg = tk.PhotoImage(file="bin/img/main")
+		mainFrame = tk.Label(master, image=mainImg)
+		mainFrame.image = mainImg
+		mainFrame.grid(row=0, column=0, columnspan=7)
+		# desc1
+		desc1Frame = tk.Label(master, text="Enter a Username:", width=100, height=3)
+		desc1Frame.grid(row=1, column=0, columnspan=7)
+		# username
+		self.username = tk.Entry(master, width=100)
+		self.username.grid(row=2, column=0, columnspan=7)
+		# get userid
+		get_userid_button = tk.Button(master, text="Get User ID!", width=15, command=self.get_user_id)
+		get_userid_button.grid(row=3, column=1)
+		# desc2
+		desc2Frame = tk.Label(master, text="Enter a User ID:", width=100, height=3)
+		desc2Frame.grid(row=4, column=0, columnspan=7)
+		# user id
+		self.userid = tk.Entry(master, width=100)
+		self.userid.grid(row=5, column=0, columnspan=7)
+		# get username
+		get_username_button = tk.Button(master, text="Get Username!", width=15, command=self.get_username)
+		get_username_button.grid(row=6, column=1)
+		# get media count
+		get_media_count_button = tk.Button(master, text="Get #Media!", width=15, command=self.get_mediacount)
+		get_media_count_button.grid(row=6, column=2)
+		# get profile picture
+		get_profile_pic_button = tk.Button(master, text="Get Profile Pic!", width=15, command=self.get_profilepic)
+		get_profile_pic_button.grid(row=6, column=3)
+		# get new post
+		get_new_post_button = tk.Button(master, text="Get New Post!", width=15, command=self.get_newpost)
+		get_new_post_button.grid(row=6, column=4)
+		# get story
+		get_story_button = tk.Button(master, text="Get Stories!", width=15, command=self.get_stories)
+		get_story_button.grid(row=6, column=5)
+		# get privacy setting
+		get_privacy_button = tk.Button(master, text="Private?", width=15, command=self.get_privacy)
+		get_privacy_button.grid(row=7, column=2)
+		# download profile picture
+		dl_profile_picture_button = tk.Button(master, text="DL Profile Pic!", width=15, command=self.dl_profilepic)
+		dl_profile_picture_button.grid(row=7, column=3)
+		# download new post
+		dl_new_post_button = tk.Button(master, text="DL New Post!", width=15, command=self.dl_newpost)
+		dl_new_post_button.grid(row=7, column=4)
+		# download stories
+		dl_story_button = tk.Button(master, text="DL Stories!", width=15, command=self.dl_stories)
+		dl_story_button.grid(row=7, column=5)
+		# desc3
+		desc3Frame = tk.Label(master, text="Enter an URL to download Post Media:", width=100, height=3)
+		desc3Frame.grid(row=8, column=0, columnspan=7)
+		# url
+		self.url = tk.Entry(master, width=100)
+		self.url.grid(row=9, column=0, columnspan=7)
+		# get url / download post media
+		dl_post_media_button = tk.Button(master, text="Download!", width=15, command=self.dl_postmedia)
+		dl_post_media_button.grid(row=10, column=1)
+		# output desc
+		desc4Frame = tk.Label(master, text="Output:", width=100, height=3)
+		desc4Frame.grid(row=11, column=0, columnspan=7)
+		# output
+		self.output = st.ScrolledText(self.master, width=80, height=10, state=tk.NORMAL)
+		self.output.grid(row=12, column=0, columnspan=7)
+		self.output.config(state=tk.DISABLED)
+		self.output.see('end')
+		# options / instabot and Instaview
+		b_open_button = tk.Button(master, text="Open in Browser!", width=15, command=self.open_browser)
+		instabot_button = tk.Button(master, text="InstaBot", width=15, command=self.instabot)
+		instaview_button = tk.Button(master, text="InstaView", width=15, command=self.instaview)
+		help_button = tk.Button(master, text="Help", width=15, command=self.help)
+		credits_button = tk.Button(master, text="Credits", width=15, command=self.credits)
+		b_open_button.grid(row=13, column=1)
+		instabot_button.grid(row=13, column=2)
+		instaview_button.grid(row=13, column=3)
+		help_button.grid(row=13, column=4)
+		credits_button.grid(row=13, column=5)
+
+	def get_user_id(self):
+		f_username = self.username.get()
+		f_userid = self.instagram.getUserID(f_username)
+		f_query = "Query: Get User ID for '" + str(f_username) + "'\n"
+		f_output = "Output: " + str(f_userid) + "\n"
+		self.userid.delete(0, 'end')
+		self.userid.insert(0, f_userid)
+		self.output.config(state=tk.NORMAL)
+		self.output.insert("end", f_query, 'query')
+		self.output.insert("end", f_output, 'output')
+		self.output.config(state=tk.DISABLED)
+		self.output.tag_config('query', foreground='green')
+		self.output.tag_config('output', foreground='red')
+		self.output.see('end')
+
+
+	def get_username(self):
+		f_userid = self.userid.get()
+		f_username = self.instagram.getUserName(f_userid)
+		f_query = "Query: Get Username for ID '" + str(f_userid) + "'\n"
+		f_output = "Output: " + str(f_username) + "\n"
+		self.username.delete(0, 'end')
+		self.username.insert(0, f_username)
+		self.output.config(state=tk.NORMAL)
+		self.output.insert("end", f_query, 'query')
+		self.output.insert("end", f_output, 'output')
+		self.output.config(state=tk.DISABLED)
+		self.output.tag_config('query', foreground='green')
+		self.output.tag_config('output', foreground='red')
+		self.output.see('end')
+
+	def get_mediacount(self):
+		f_userid = self.userid.get()
+		f_media_count = self.instagram.getMediaCount(f_userid)
+		f_query = "Query: Get Media Count for ID '" + str(f_userid) + "' (" + str(self.instagram.getUserName(f_userid)) + ")\n"
+		f_output = "Output: " + str(f_media_count) + "\n"
+		self.output.config(state=tk.NORMAL)
+		self.output.insert("end", f_query, 'query')
+		self.output.insert("end", f_output, 'output')
+		self.output.config(state=tk.DISABLED)
+		self.output.tag_config('query', foreground='green')
+		self.output.tag_config('output', foreground='red')
+		self.output.see('end')
+
+	def get_profilepic(self):
+		f_userid = self.userid.get()
+		f_profile_pic = self.instagram.getProfilePic(f_userid)
+		self.result = [f_profile_pic]
+		f_query = "Query: Get Profile Picture for ID '" + str(f_userid) + "' (" + str(self.instagram.getUserName(f_userid)) + ")\n"
+		f_output = "Output: " + str(f_profile_pic) + "\n"
+		self.output.config(state=tk.NORMAL)
+		self.output.insert("end", f_query, 'query')
+		self.output.insert("end", f_output, 'output')
+		self.output.config(state=tk.DISABLED)
+		self.output.tag_config('query', foreground='green')
+		self.output.tag_config('output', foreground='red')
+		self.output.see('end')
+
+	def get_newpost(self):
+		f_userid = self.userid.get()
+		f_new_post = self.instagram.getNewPost(f_userid)
+		self.result = f_new_post
+		f_query = "Query: Get newest Post for ID '" + str(f_userid) + "' (" + str(self.instagram.getUserName(f_userid)) + ")\n"
+		f_output = ""
+		for item in f_new_post:
+			f_output = f_output + "Output: " + str(item) + "\n"
+		self.output.config(state=tk.NORMAL)
+		self.output.insert("end", f_query, 'query')
+		self.output.insert("end", f_output, 'output')
+		self.output.config(state=tk.DISABLED)
+		self.output.tag_config('query', foreground='green')
+		self.output.tag_config('output', foreground='red')
+		self.output.see('end')
+
+	def get_stories(self):
+		f_userid = self.userid.get()
+		f_stories = self.instagram.getStories(f_userid)
+		self.result = f_stories
+		f_query = "Query: Get Stories for ID '" + str(f_userid) + "' (" + str(self.instagram.getUserName(f_userid)) + ")\n"
+		f_output = ""
+		for item in f_stories:
+			f_output = f_output + "Output: " + str(item) + "\n"
+		self.output.config(state=tk.NORMAL)
+		self.output.insert("end", f_query, 'query')
+		self.output.insert("end", f_output, 'output')
+		self.output.config(state=tk.DISABLED)
+		self.output.tag_config('query', foreground='green')
+		self.output.tag_config('output', foreground='red')
+		self.output.see('end')
+
+	def get_privacy(self):
+		f_userid = self.userid.get()
+		f_privacy = self.instagram.isProfilePrivate(f_userid)
+		f_query = "Query: Get Privacy Setting for ID '" + str(f_userid) + "' (" + str(self.instagram.getUserName(f_userid)) + ")\n"
+		if f_privacy:
+			f_output = "Output: This profile is private!\n"
 		else:
-			i.instaBot(user_ids, int(args[2]), int(args[3]), False)
-	elif action == "getuserid":
-		print(instagram.getUserID(args[0]))
-	elif action == "getusername":
-		print(instagram.getUserName(args[0]))
-	elif action == "getmediacount":
-		print(instagram.getMediaCount(args[0]))
-	elif action == "getprofilepic":
-		if args[1] == "True":
-			data = instagram.getProfilePic(args[0], True)
-			print("Profile Picture Download finished!")
+			f_output = "Output: This profile is public!\n"
+		self.output.config(state=tk.NORMAL)
+		self.output.insert("end", f_query, 'query')
+		self.output.insert("end", f_output, 'output')
+		self.output.config(state=tk.DISABLED)
+		self.output.tag_config('query', foreground='green')
+		self.output.tag_config('output', foreground='red')
+		self.output.see('end')
+
+	def dl_profilepic(self):
+		f_userid = self.userid.get()
+		f_profile_pic = self.instagram.getProfilePic(f_userid, download=True)
+		self.result = [f_profile_pic]
+		f_query = "Query: Download Profile Picture for ID '" + str(f_userid) + "' (" + str(self.instagram.getUserName(f_userid)) + ")\n"
+		f_output = "Output: " + str(f_profile_pic) + "\nOutput: Download finished!\nOutput: File in directory: 'downloads'\n"
+		self.output.config(state=tk.NORMAL)
+		self.output.insert("end", f_query, 'query')
+		self.output.insert("end", f_output, 'output')
+		self.output.config(state=tk.DISABLED)
+		self.output.tag_config('query', foreground='green')
+		self.output.tag_config('output', foreground='red')
+		self.output.see('end')
+
+	def dl_newpost(self):
+		f_userid = self.userid.get()
+		f_new_post = self.instagram.getNewPost(f_userid, download=True)
+		self.result = f_new_post
+		f_query = "Query: Download newest Post for ID '" + str(f_userid) + "' (" + str(self.instagram.getUserName(f_userid)) + ")\n"
+		f_output = ""
+		for item in f_new_post:
+			f_output = f_output + "Output: " + str(item) + "\n"
+		f_output = f_output + "Output: Download finished!\nOutput: File in directory: 'downloads'\n"
+		self.output.config(state=tk.NORMAL)
+		self.output.insert("end", f_query, 'query')
+		self.output.insert("end", f_output, 'output')
+		self.output.config(state=tk.DISABLED)
+		self.output.tag_config('query', foreground='green')
+		self.output.tag_config('output', foreground='red')
+		self.output.see('end')
+
+	def dl_stories(self):
+		f_userid = self.userid.get()
+		f_stories = self.instagram.getStories(f_userid, download=True)
+		self.result = f_stories
+		f_query = "Query: Get Stories for ID '" + str(f_userid) + "' (" + str(self.instagram.getUserName(f_userid)) + ")\n"
+		f_output = ""
+		for item in f_stories:
+			f_output = f_output + "Output: " + str(item) + "\n"
+		f_output = f_output + "Output: Download finished!\nOutput: File in directory: 'downloads'\n"
+		self.output.config(state=tk.NORMAL)
+		self.output.insert("end", f_query, 'query')
+		self.output.insert("end", f_output, 'output')
+		self.output.config(state=tk.DISABLED)
+		self.output.tag_config('query', foreground='green')
+		self.output.tag_config('output', foreground='red')
+		self.output.see('end')
+
+	def dl_postmedia(self):
+		f_url = self.url.get()
+		f_postmedia = self.instagram.getMedia(f_url, download=True)
+		self.result = f_postmedia
+		f_query = "Query: Download Post Media for Post '" + str(f_url) + "'\n"
+		f_output = ""
+		for item in f_postmedia:
+			f_output = f_output + "Output: " + str(item) + "\n"
+		f_output = f_output + "Output: Download finished!\nOutput: File in directory: 'downloads'\n"
+		self.output.config(state=tk.NORMAL)
+		self.output.insert("end", f_query, 'query')
+		self.output.insert("end", f_output, 'output')
+		self.output.config(state=tk.DISABLED)
+		self.output.tag_config('query', foreground='green')
+		self.output.tag_config('output', foreground='red')
+		self.output.see('end')
+
+	def instabot(self):
+		f_query = "Query: InstaBot\n"
+		f_output = "Output: Please follow the instructions in the terminal!\nOutput: Press Ctrl + C to cancel!\n"
+		self.output.config(state=tk.NORMAL)
+		self.output.insert("end", f_query, 'query')
+		self.output.insert("end", f_output, 'output')
+		self.output.config(state=tk.DISABLED)
+		self.output.tag_config('query', foreground='green')
+		self.output.tag_config('output', foreground='red')
+		self.output.see('end')
+		self.master.update_idletasks()
+		if "Windows" in platform.system():
+			os.system("python bin/python/instabot.py")
 		else:
-			data = instagram.getProfilePic(args[0])
-			print(data)
-		with open("results.json", "w") as r:
-			json.dump([data], r)
-			r.close()
-	elif action == "getnewpost":
-		if args[1] == "True":
-			data = instagram.getNewPost(args[0], True)
-			print("Post Download finished!")
+			os.system("python3 bin/python/instabot.py")
+
+	def instaview(self):
+		f_query = "Query: InstaView\n"
+		f_output = "Output: Please follow the instructions in the terminal!\nOutput: Press Ctrl + C to cancel!\n"
+		self.output.config(state=tk.NORMAL)
+		self.output.insert("end", f_query, 'query')
+		self.output.insert("end", f_output, 'output')
+		self.output.config(state=tk.DISABLED)
+		self.output.tag_config('query', foreground='green')
+		self.output.tag_config('output', foreground='red')
+		self.output.see('end')
+		self.master.update_idletasks()
+		if "Windows" in platform.system():
+			os.system("python bin/python/instaview.py")
 		else:
-			data = instagram.getNewPost(args[0])
-			print(data[0])
-		with open("results.json", "w") as r:
-			json.dump(data, r)
-			r.close()
-	elif action == "getmedia":
-		data = instagram.getMedia(args[0], True)
-		with open("results.json", "w") as r:
-			json.dump(data, r)
-			r.close()
-		print("Post Media Download finished!")
-	elif action == "getstories":
-		if args[1] == "True":
-			data = instagram.getStories(args[0], True)
-			print("Story Download finished!")
-		else:
-			data = instagram.getStories(args[0])
-			print("Stories extracted! See Results tab!")
-		with open("results.json", "w") as r:
-			json.dump(data, r)
-			r.close()
-	elif action == "instaview":
-		i = InstaView()
-		i.createRMD(args[0])
-		print("RMD creation successful! Created at //your_path/instaview.Rmd!")
-	elif action == "loadresult":
-		s = ""
-		c = 1
-		with open("results.json", "r") as r:
-			data = json.load(r)
-			for item in data:
-				s = s + str(c) + " = " + str(item) + "   ;   "
-				c = c + 1
-			r.close()
-		print(s)
-	elif action == "getprivacysetting":
-		if instagram.isProfilePrivate(args[0]):
-			print("This profile is private!")
-		else:
-			print("This profile is public!")
+			os.system("python3 bin/python/instaview.py")
+
+	def help(self):
+		#webbrowser.open("bin/help/help.html")
+		webbrowser.open("https://htmlpreview.github.io/?https://github.com/t0xic-m/instapython-app/blob/master/app/help.html")
+
+	def credits(self):
+		webbrowser.open("https://raw.githubusercontent.com/t0xic-m/instapython-app/master/LICENSE.md")
+
+	def open_browser(self):
+		for item in self.result:
+			webbrowser.open(item)
+
+if __name__ == '__main__':
+
+	if len(sys.argv) == 1:
+		gui_mode = True
 	else:
-		print("Unknown action!")
+		gui_mode = False
+
+	if gui_mode:
+		root = tk.Tk()
+		app = InstaPythonApp(root)
+		root.mainloop()
+	else:
+		action = sys.argv[1]
+		args = sys.argv[2:]
+
+		instagram = Instagram()
+
+		#usage: instabot channel api_token rtime stime debugging_mode user_id*
+		if action == "instabot":
+			i = InstaBot("instabot.cfg", str(args[0]), str(args[1]))
+			user_ids_cc = args[5]
+			user_ids = user_ids_cc.split(";")
+			if args[4] == "true":
+				i.instaBot(user_ids, int(args[2]), int(args[3]), True)
+			else:
+				i.instaBot(user_ids, int(args[2]), int(args[3]), False)
+		elif action == "getuserid":
+			print(instagram.getUserID(args[0]))
+		elif action == "getusername":
+			print(instagram.getUserName(args[0]))
+		elif action == "getmediacount":
+			print(instagram.getMediaCount(args[0]))
+		elif action == "getprofilepic":
+			if args[1] == "True":
+				data = instagram.getProfilePic(args[0], True)
+				print("Profile Picture Download finished!")
+			else:
+				data = instagram.getProfilePic(args[0])
+				print(data)
+			with open("results.json", "w") as r:
+				json.dump([data], r)
+				r.close()
+		elif action == "getnewpost":
+			if args[1] == "True":
+				data = instagram.getNewPost(args[0], True)
+				print("Post Download finished!")
+			else:
+				data = instagram.getNewPost(args[0])
+				print(data[0])
+			with open("results.json", "w") as r:
+				json.dump(data, r)
+				r.close()
+		elif action == "getmedia":
+			data = instagram.getMedia(args[0], True)
+			with open("results.json", "w") as r:
+				json.dump(data, r)
+				r.close()
+			print("Post Media Download finished!")
+		elif action == "getstories":
+			if args[1] == "True":
+				data = instagram.getStories(args[0], True)
+				print("Story Download finished!")
+			else:
+				data = instagram.getStories(args[0])
+				print("Stories extracted! See Results tab!")
+			with open("results.json", "w") as r:
+				json.dump(data, r)
+				r.close()
+		elif action == "instaview":
+			i = InstaView()
+			i.createRMD(args[0])
+			print("RMD creation successful! Created at //your_path/instaview.Rmd!")
+		elif action == "loadresult":
+			s = ""
+			c = 1
+			with open("results.json", "r") as r:
+				data = json.load(r)
+				for item in data:
+					s = s + str(c) + " = " + str(item) + "   ;   "
+					c = c + 1
+				r.close()
+			print(s)
+		elif action == "getprivacysetting":
+			if instagram.isProfilePrivate(args[0]):
+				print("This profile is private!")
+			else:
+				print("This profile is public!")
+		else:
+			print("Unknown action!")
