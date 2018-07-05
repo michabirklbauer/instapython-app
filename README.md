@@ -2,7 +2,7 @@
 
 InstaPython App is a graphical interface wrapped around my python package [InstaPython](https://github.com/t0xic-m/instapython). It provides basic functions to access and deal with Instagram data and two of my other Projects: [InstaBot](https://github.com/t0xic-m/instagram_watchdog) and [InstaView](https://github.com/t0xic-m/instagram_data_download_viewer). InstaPython App was built with [Electron](https://electronjs.org/) and [Bootstrap](https://getbootstrap.com/).
 
-Alternatively there is also a version that runs natively with python and uses Tkinter for the interface!
+Alternatively there is also a version that runs natively in Python 3.6 and uses Tkinter for the interface!
 
 ## Features
 
