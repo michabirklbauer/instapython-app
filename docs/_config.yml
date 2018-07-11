@@ -1,4 +1,4 @@
-theme: jekyll-theme-cayman
+theme: jekyll-theme-minimal
 title: "InstaPython App by Micha Birklbauer"
 description: "Project Website for InstaPython App - A graphical interface for InstaPython"
 show_downloads: "true"
