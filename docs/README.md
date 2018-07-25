@@ -97,6 +97,8 @@ python instapython-app.py
 python3 instapython-app.py
 ```
 
+The standalone tkinter version will be further developed [here](https://github.com/t0xic-m/instapython)!
+
 ## Downloads
 
 - ZIP: [DOWNLOAD](https://github.com/t0xic-m/instapython-app/archive/master.zip)
