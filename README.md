@@ -89,6 +89,7 @@ python instapython-app.py
 # Run the app on any other platform
 python3 instapython-app.py
 ```
+The standalone tkinter version will be further developed [here](https://github.com/t0xic-m/instapython)!
 
 ## Credits
 
