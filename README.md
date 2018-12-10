@@ -4,6 +4,9 @@ InstaPython App is a graphical interface wrapped around my python package [Insta
 
 Alternatively there is also a version that runs natively in Python 3.6 and uses Tkinter for the interface!
 
+## WARNING
+**\[10.12.2018\] Since Instagram deprecated their public API this repository will not be maintained anymore. Programs/Scripts or parts of them will not work properly anymore! USE AT OWN RISK!**
+
 ## Features
 
 - Retrieve User ID
