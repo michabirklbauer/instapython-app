@@ -105,8 +105,8 @@ The standalone tkinter version will be further developed [here](https://github.c
 
 ## Contact
 
-- [Website](https://sites.google.com/site/michabirklbauer)
+- [Website](https://t0xic-m.github.io/web)
 - [GitHub Profile](https://github.com/t0xic-m)
 - [GitHub Page](https://t0xic-m.github.io/)
-- [Mail](micha.birklbauer@gmail.com)
+- [Mail](mailto:micha.birklbauer@gmail.com)
 - [Telegram](https://telegram.me/micha_birklbauer)
