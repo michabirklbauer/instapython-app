@@ -1,6 +1,6 @@
 # InstaPython App
 
-InstaPython App is a graphical interface wrapped around my python package [InstaPython](https://github.com/t0xic-m/instapython). It provides basic functions to access and deal with Instagram data and two of my other Projects: [InstaBot](https://github.com/t0xic-m/instagram_watchdog) and [InstaView](https://github.com/t0xic-m/instagram_data_download_viewer). InstaPython App was built with [Electron](https://electronjs.org/) and [Bootstrap](https://getbootstrap.com/).
+InstaPython App is a graphical interface wrapped around my python package [InstaPython](https://github.com/michabirklbauer/instapython). It provides basic functions to access and deal with Instagram data and two of my other projects: [InstaBot](https://github.com/michabirklbauer/instagram_watchdog) and [InstaView](https://github.com/michabirklbauer/instagram_json_viewer). InstaPython App was built with [Electron](https://electronjs.org/) and [Bootstrap](https://getbootstrap.com/).
 
 Alternatively there is also a version that runs natively in Python 3.6 and uses Tkinter for the interface!
 
@@ -20,8 +20,8 @@ Alternatively there is also a version that runs natively in Python 3.6 and uses 
 - Download Newest Post
 - Download Stories
 - Download Post Media (Picture/Video/Album)
-- InstaBot: A watchdog to observe public Instagram profiles. [see here!](https://github.com/t0xic-m/instagram_watchdog)
-- InstaView: A script to create nicely structured R Markdown/PDF files from Instagram data.  [see here!](https://github.com/t0xic-m/instagram_data_download_viewer)
+- InstaBot: A watchdog to observe public Instagram profiles. [see here!](https://github.com/michabirklbauer/instagram_watchdog)
+- InstaView: A script to create nicely structured HTML files from Instagram data.  [see here!](https://github.com/michabirklbauer/instagram_json_viewer)
 
 ## Requirements
 
@@ -45,8 +45,8 @@ To be more specific:
 ## Getting Started
 
 ```bash
-# Clone this repository with git (or download it manually via this link: https://github.com/t0xic-m/instapython-app/archive/master.zip)
-git clone https://github.com/t0xic-m/instapython-app.git
+# Clone this repository with git (or download it manually via this link: https://github.com/michabirklbauer/instapython-app/archive/master.zip)
+git clone https://github.com/michabirklbauer/instapython-app.git
 # Go into the repository
 cd instapython-app/app
 # Install dependencies
@@ -79,8 +79,8 @@ import os
 Getting started:
 
 ```bash
-# Clone this repository with git (or download it manually via this link: https://github.com/t0xic-m/instapython-app/archive/master.zip)
-git clone https://github.com/t0xic-m/instapython-app.git
+# Clone this repository with git (or download it manually via this link: https://github.com/michabirklbauer/instapython-app/archive/master.zip)
+git clone https://github.com/michabirklbauer/instapython-app.git
 # Go into the repository
 cd instapython-app/app-tkinter
 # Install dependencies
@@ -92,7 +92,7 @@ python instapython-app.py
 # Run the app on any other platform
 python3 instapython-app.py
 ```
-The standalone tkinter version will be further developed [here](https://github.com/t0xic-m/instapython)!
+The standalone tkinter version will be further developed [here](https://github.com/michabirklbauer/instapython)!
 
 ## Credits
 
@@ -104,12 +104,10 @@ The standalone tkinter version will be further developed [here](https://github.c
 
 ## License
 
-[MIT License](https://github.com/t0xic-m/instapython-app/blob/master/LICENSE.md)
+[MIT License](https://github.com/michabirklbauer/instapython-app/blob/master/LICENSE.md)
 
 ## Contact
 
-- [Website](https://t0xic-m.github.io/web)
-- [GitHub Profile](https://github.com/t0xic-m)
-- [GitHub Page](https://t0xic-m.github.io/)
-- [Mail](mailto:micha.birklbauer@gmail.com)
-- [Telegram](https://telegram.me/micha_birklbauer)
+- Website: [michabirklbauer.github.io](https://michabirklbauer.github.io/)
+- Mail: [micha.birklbauer@gmail.com](mailto:micha.birklbauer@gmail.com)
+- Telegram: [micha_birklbauer](https://telegram.me/micha_birklbauer)

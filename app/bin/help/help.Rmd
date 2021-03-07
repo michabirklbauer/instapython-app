@@ -9,7 +9,7 @@ output:
 
 # What is InstaPython-App?
 
-[InstaPython](https://github.com/t0xic-m/instapython) is set of tools to access and deal with Instagram data.
+[InstaPython](https://github.com/michabirklbauer/instapython) is set of tools to access and deal with Instagram data.
 
 InstaPython-App is a graphical interface wrapped around the python package!
 
@@ -88,7 +88,7 @@ NOTE: This may take some time if the user has a lot of stories!
 
 ### Download Post Media
 
-Enter a valid and existing URL to an Instagram post. 
+Enter a valid and existing URL to an Instagram post.
 
 E.g.: https://www.instagram.com/p/BQGIwFYFDSB/
 
@@ -199,13 +199,13 @@ This programm was built with the help of [Electron](https://electronjs.org/) and
 
 # License
 
-[MIT License](https://github.com/t0xic-m/instapython-app/blob/master/LICENSE.md)
+[MIT License](https://github.com/michabirklbauer/instapython-app/blob/master/LICENSE.md)
 
 # Contact
 
 Micha Birklbauer
 
-- [Website](https://sites.google.com/site/michabirklbauer)
-- [GitHub](https://github.com/t0xic-m)
-- [Mail](micha.birklbauer@gmail.com)
+- [Website](https://michabirklbauer.github.io)
+- [GitHub](https://github.com/michabirklbauer)
+- [Mail](mailto:micha.birklbauer@gmail.com)
 - [Telegram](https://telegram.me/micha_birklbauer)

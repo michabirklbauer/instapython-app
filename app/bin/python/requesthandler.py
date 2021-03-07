@@ -538,7 +538,7 @@ class InstaView:
 					rmd_file.write("\\_\\_\\_\\_\\_\n\n")
 
 			# credits
-			w = "# Credits\n\nThis document was created using Micha Birklbauer's [Instagram Data Download Viewer](https://github.com/t0xic-m/instagram_data_download_viewer)."
+			w = "# Credits\n\nThis document was created using Micha Birklbauer's [Instagram JSON Viewer](https://github.com/michabirklbauer/instagram_json_viewer)."
 			rmd_file.write(w)
 
 			rmd_file.close()
